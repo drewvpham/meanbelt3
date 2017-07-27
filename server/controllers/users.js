@@ -17,6 +17,12 @@ class UsersController{
       }
     })
   }
+  index(req, res){
+    User.find({}, (err,users)=>{
+      if(err){return res.json(err)}
+      return res.json(users)
+    })
+  }
 }
 
 module.exports = new UsersController();

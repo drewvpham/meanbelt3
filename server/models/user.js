@@ -12,7 +12,9 @@ let UserSchema = new mongoose.Schema({
   // answers: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Answer'
-  // }]
+  polls: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Poll'
+    }],
 }, {timestamps: true})
 
 mongoose.model('User', UserSchema);
