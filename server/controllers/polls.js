@@ -34,7 +34,7 @@ class PollsController{
    })
   }
   delete(req, res){
-  Poll.findByIdAndRemove(req.params.id, (err,poll) => {
+  Poll.findByIdAndRemove(req.params.poll_id, (err,poll) => {
           if(err) {
             return res.json(err);
           }
@@ -42,8 +42,8 @@ class PollsController{
       });
   }
   vote1(req, res){
-    Poll.findByIdAndUpdate(req.params.id,
-     {$inc:{votes:1}},
+    Poll.findByIdAndUpdate(req.params.poll_id,
+     {$inc:{'option1.votes':1}},
     {new:true},
       (err,poll)=>{
           if(err){return res.json(err)}
