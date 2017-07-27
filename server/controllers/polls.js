@@ -33,5 +33,13 @@ class PollsController{
 
    })
   }
+  delete(req, res){
+  Poll.findByIdAndRemove(req.params.id, (err,poll) => {
+          if(err) {
+            return res.json(err);
+          }
+          return res.json(poll);
+      });
+  }
 }
 module.exports = new PollsController();
