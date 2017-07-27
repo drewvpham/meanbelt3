@@ -12,7 +12,7 @@ class PollsController{
   })
  }
  create(req,res){
-   console.log('hello')
+
    Poll.create(req.body, (err, poll)=>{
      if(err){return res.json(err)}
      User.findByIdAndUpdate(
@@ -40,6 +40,15 @@ class PollsController{
           }
           return res.json(poll);
       });
+  }
+  vote1(req, res){
+    Poll.findByIdAndUpdate(req.params.id,
+     {$inc:{votes:1}},
+    {new:true},
+      (err,poll)=>{
+          if(err){return res.json(err)}
+          return res.json(poll)
+      })
   }
 }
 module.exports = new PollsController();
